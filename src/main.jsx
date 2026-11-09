@@ -564,6 +564,42 @@ function App() {
                   </button>
                 </div>
               </div>
+
+              <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-24 hidden h-80 w-80 rounded-full border border-teal-300/10 lg:block" />
+              <div aria-hidden="true" className="pointer-events-none absolute right-8 top-1/2 hidden h-64 w-64 -translate-y-1/2 rounded-full bg-teal-400/10 blur-3xl lg:block" />
+              <div className="absolute right-12 top-1/2 hidden w-80 -translate-y-1/2 rounded-3xl border border-white/20 bg-white/10 p-4 shadow-2xl backdrop-blur-md lg:block">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-[0.18em] text-teal-100">Quick verification</span>
+                  <span className="flex items-center gap-1 rounded-full bg-emerald-400/15 px-2.5 py-1 text-[10px] font-semibold text-emerald-200">
+                    <CheckCircle2 className="h-3.5 w-3.5" />
+                    Official directory
+                  </span>
+                </div>
+
+                <div className="mt-4 flex items-center gap-4 rounded-2xl bg-white p-4 text-slate-900 shadow-lg">
+                  <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-slate-50 text-blue-700">
+                    <QrCode className="h-[4.5rem] w-[4.5rem]" strokeWidth={1.7} />
+                  </div>
+                  <div className="min-w-0">
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Example unit</span>
+                    <h3 className="mt-1 text-lg font-extrabold leading-tight">Body #042</h3>
+                    <p className="mt-1 truncate text-sm font-medium text-slate-600">Juan Dela Cruz</p>
+                    <div className="mt-2 flex items-center gap-1.5 text-xs font-semibold text-emerald-700">
+                      <Shield className="h-3.5 w-3.5" />
+                      Driver profile available
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setIsQrScannerOpen(true)}
+                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 py-2.5 text-sm font-semibold text-white transition hover:bg-white/20"
+                >
+                  <Scan className="h-4 w-4" />
+                  Verify a tricycle
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
             </div>
 
             {/* Quick Action Grid */}
