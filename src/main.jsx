@@ -1837,7 +1837,7 @@ CREATE TABLE announcements (
 
                   {/* Center Badge */}
                   <rect x="40" y="40" width="20" height="20" rx="4" fill="#0284c7" />
-                  <text x="50" y="54" fontSize="10" fontWeight="bold" fill="#ffffff" textAnchor="middle">UA</text>
+                  <text x="50" y="54" fontSize="10" fontWeight="bold" fill="#ffffff" textAnchor="middle">TSQR</text>
                 </svg>
               </div>
 
