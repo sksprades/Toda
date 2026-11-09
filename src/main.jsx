@@ -118,7 +118,7 @@ const INITIAL_LOST_ITEMS = [
     dateFound: "2026-03-04",
     locationFound: "Back seat of Tricycle #042 near UA Gate 1",
     description: "Dark blue insulated water bottle with stickers (UA Student Council & Anime stickers).",
-    claimInstructions: "Present student ID at the UA TODA Terminal Dispatcher Booth.",
+    claimInstructions: "This item has been surrendered to the school Lost & Found office. Please claim it there and bring your student ID.",
     status: "Unclaimed",
     photo: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=300&auto=format&fit=crop&q=80"
   },
@@ -130,7 +130,7 @@ const INITIAL_LOST_ITEMS = [
     dateFound: "2026-03-02",
     locationFound: "Under passenger floor mat",
     description: "Contains license under name of 'Carlo M.' and some small bills. No credit cards.",
-    claimInstructions: "Contact Driver Roberto Santos directly via TODA Hotline or Officer in Duty.",
+    claimInstructions: "This item was returned to the school Lost & Found office. Please claim it there and bring your student ID.",
     status: "Claimed",
     photo: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=300&auto=format&fit=crop&q=80"
   }
@@ -210,7 +210,7 @@ function App() {
     dateFound: new Date().toISOString().slice(0, 10),
     locationFound: '',
     description: '',
-    claimInstructions: 'Claim at TODA Main Dispatcher Terminal.',
+    claimInstructions: 'This item has been surrendered to the school Lost & Found office. Please claim it there and bring your student ID.',
     photo: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&auto=format&fit=crop&q=80'
   });
 
@@ -222,6 +222,7 @@ function App() {
   });
 
   const [driverResponseInput, setDriverResponseInput] = useState('');
+  const [lostItemReturned, setLostItemReturned] = useState(false);
   const [sosModalOpen, setSosModalOpen] = useState(false);
   const [sosSuccess, setSosSuccess] = useState(false);
   const [selectedDocTab, setSelectedDocTab] = useState('sql');
@@ -343,9 +344,15 @@ function App() {
   // Handle Post Lost Item
   const handlePostLostItem = (e) => {
     e.preventDefault();
+    if (!lostItemReturned) {
+      showToast("Return the item to the school Lost & Found office before posting.", "error");
+      return;
+    }
+
     const newItem = {
       id: Date.now(),
       ...lostForm,
+      claimInstructions: 'This item has been surrendered to the school Lost & Found office. Please claim it there and bring your student ID.',
       status: 'Unclaimed'
     };
     setLostItems([newItem, ...lostItems]);
@@ -354,9 +361,10 @@ function App() {
       title: '', category: 'Wallet', driverBody: '042',
       dateFound: new Date().toISOString().slice(0, 10),
       locationFound: '', description: '',
-      claimInstructions: 'Claim at TODA Main Dispatcher Terminal.',
+      claimInstructions: 'This item has been surrendered to the school Lost & Found office. Please claim it there and bring your student ID.',
       photo: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=300&auto=format&fit=crop&q=80'
     });
+    setLostItemReturned(false);
     setActiveTab('lostfound');
   };
 
@@ -1087,7 +1095,7 @@ function App() {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
                 <h2 className="text-2xl font-bold text-slate-900">Lost and Found Board</h2>
-                <p className="text-xs md:text-sm text-slate-500">Items recovered by TODA drivers inside units. Contact TODA dispatcher to claim.</p>
+                <p className="text-xs md:text-sm text-slate-500">Items found by TODA drivers are returned to the school Lost & Found office. Students can claim them there.</p>
               </div>
 
               {role === 'driver' && (
@@ -1150,6 +1158,9 @@ function App() {
                   <X className="w-5 h-5" />
                 </button>
                 <h3 className="font-bold text-lg text-slate-900 mb-4">Post Found Item</h3>
+                <p className="mb-3 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs font-medium leading-relaxed text-amber-900">
+                  Return the item to the school Lost & Found office before posting it here. Students will be directed to claim it from that office.
+                </p>
                 <form onSubmit={(e) => { handlePostLostItem(e); document.getElementById('lost-post-modal').classList.add('hidden'); }} className="space-y-3">
                   <input type="text" placeholder="Item Name (e.g. Silver Keys)" required className="w-full px-3.5 py-2 border rounded-xl text-sm" value={lostForm.title} onChange={e => setLostForm({...lostForm, title: e.target.value})} />
                   <select className="w-full px-3.5 py-2 border rounded-xl text-sm" value={lostForm.category} onChange={e => setLostForm({...lostForm, category: e.target.value})}>
@@ -1157,6 +1168,16 @@ function App() {
                   </select>
                   <input type="text" placeholder="Found Location" required className="w-full px-3.5 py-2 border rounded-xl text-sm" value={lostForm.locationFound} onChange={e => setLostForm({...lostForm, locationFound: e.target.value})} />
                   <textarea placeholder="Description..." rows={3} className="w-full px-3.5 py-2 border rounded-xl text-sm" value={lostForm.description} onChange={e => setLostForm({...lostForm, description: e.target.value})} />
+                  <label className="flex items-start gap-2 rounded-xl border border-slate-200 p-3 text-xs leading-relaxed text-slate-700">
+                    <input
+                      type="checkbox"
+                      required
+                      checked={lostItemReturned}
+                      onChange={e => setLostItemReturned(e.target.checked)}
+                      className="mt-0.5 h-4 w-4 accent-blue-600"
+                    />
+                    <span>I confirm that I have returned this item to the school Lost & Found office.</span>
+                  </label>
                   <button type="submit" className="w-full py-3 bg-blue-600 text-white font-bold text-sm rounded-xl">Publish Post</button>
                 </form>
               </div>
