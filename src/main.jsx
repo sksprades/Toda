@@ -104,7 +104,7 @@ const INITIAL_ANNOUNCEMENTS = [
     category: "Fare Matrix",
     date: "2026-03-01",
     author: "TODA Executive Board",
-    content: "Terminal to UA gate 1 and 2 Fare: Php 40 for 1 student, Php 25 each For 2 student and Php 20 each for 3 or more students." ,
+    content: "Terminal to UA gate 1 and 2 \nFare: Php 40 for 1 student, \nPhp 25 each For 2 student \n Php 20 each for 3 or more students." ,
     urgent: true
   }
 ];
