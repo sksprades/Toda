@@ -104,26 +104,8 @@ const INITIAL_ANNOUNCEMENTS = [
     category: "Fare Matrix",
     date: "2026-03-01",
     author: "TODA Executive Board",
-    content: "Base fare is adjusted to ₱15.00 for the first 2 kilometers. Additional ₱2.00 per succeeding kilometer. 20% discount for Students, Senior Citizens, and PWDs upon presentation of valid ID.",
+    content: "Terminal to UA gate 1 and 2 Fare: Php 40 for 1 student, Php 25 each For 2 student and Php 20 each for 3 or more students." ,
     urgent: true
-  },
-  {
-    id: 2,
-    title: "Road Advisory: MacArthur Highway Drainage Maintenance",
-    category: "Route Info",
-    date: "2026-03-03",
-    author: "City Traffic Board",
-    content: "Expect slow moving traffic near UA Gate 2 due to ongoing road drainage construction. Alternative route suggested through Sto. Rosario Street.",
-    urgent: false
-  },
-  {
-    id: 3,
-    title: "Monthly TODA General Assembly & Election",
-    category: "TODA Meeting",
-    date: "2026-03-15",
-    author: "Barangay Secretariat",
-    content: "All active drivers are required to attend the mandatory road safety seminar and annual assembly on March 20 at Barangay Covered Court.",
-    urgent: false
   }
 ];
 
