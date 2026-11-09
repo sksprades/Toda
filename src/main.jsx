@@ -489,13 +489,6 @@ function App() {
               </>
             )}
 
-            <button 
-              onClick={() => setActiveTab('docs')} 
-              className={`ml-2 px-3 py-2 rounded-lg text-sm font-semibold flex items-center space-x-1.5 border ${activeTab === 'docs' ? 'bg-indigo-600 text-white border-indigo-600' : 'text-indigo-600 border-indigo-200 bg-indigo-50 hover:bg-indigo-100'}`}
-            >
-              <Code className="w-4 h-4" />
-              <span>Tech Specs</span>
-            </button>
           </nav>
 
           {/* Quick Action Buttons Header */}
@@ -1537,7 +1530,6 @@ function App() {
                 Complete developer documentation including Database Schema SQL, ERD Structure, REST API Endpoints, and Folder Architecture for full production deployment.
               </p>
 
-              {/* Sub-Tabs for Tech Specs */}
               <div className="mt-6 flex flex-wrap gap-2">
                 {[
                   { key: 'sql', label: 'MySQL Schema SQL' },
@@ -2030,7 +2022,7 @@ CREATE TABLE announcements (
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center space-x-2">
             <div className="w-6 h-6 rounded bg-blue-600 text-white font-bold flex items-center justify-center text-xs">UA</div>
-            <span className="font-bold text-white">UA TODA Connect</span>
+            <span className="font-bold text-white">TrikeSafe</span>
             <span>© 2026 University Area Tricycle Association</span>
           </div>
 
@@ -2041,7 +2033,6 @@ CREATE TABLE announcements (
             </button>
             <button onClick={() => setActiveTab('emergency')} className="hover:text-rose-400 transition">Emergency SOS</button>
             <button onClick={() => setActiveTab('news')} className="hover:text-white transition">Fare Matrix</button>
-            <button onClick={() => setActiveTab('docs')} className="hover:text-indigo-400 transition">Developer Specs</button>
           </div>
         </div>
       </footer>
