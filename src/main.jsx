@@ -410,8 +410,29 @@ function App() {
     );
   }, [drivers, searchQuery]);
 
+  const responsiveNavItems = role === 'public'
+    ? [
+        { label: 'Home', tab: 'home' },
+        { label: 'Driver Directory', tab: 'directory' },
+        { label: 'Lost & Found', tab: 'lostfound' },
+        { label: 'Announcements', tab: 'news' },
+        { label: 'File Report', tab: 'report' },
+        { label: 'Rate Driver', tab: 'rate' }
+      ]
+    : role === 'driver'
+      ? [
+          { label: 'Driver Dashboard', tab: 'driverDash' },
+          { label: 'Directory', tab: 'directory' },
+          { label: 'Lost & Found', tab: 'lostfound' }
+        ]
+      : [
+          { label: 'Admin Dashboard', tab: 'adminDash' },
+          { label: 'Manage Drivers', tab: 'directory' },
+          { label: 'Announcements', tab: 'news' }
+        ];
+
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 pb-24 md:pb-8 flex flex-col justify-between">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-800 flex flex-col justify-between">
       
       {/* Toast Notification */}
       {toast && (
@@ -457,14 +478,14 @@ function App() {
         </div>
 
         {/* Main Navbar */}
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setActiveTab(role === 'public' ? 'home' : role === 'driver' ? 'driverDash' : 'adminDash')}>
-            <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-xl shadow-md bg-gradient-to-tr from-blue-700 to-teal-500">
+        <div className="max-w-7xl mx-auto w-full px-3 sm:px-4 py-3 flex items-center justify-between gap-2">
+          <div className="flex min-w-0 items-center space-x-2 sm:space-x-3 cursor-pointer" onClick={() => setActiveTab(role === 'public' ? 'home' : role === 'driver' ? 'driverDash' : 'adminDash')}>
+            <div className="w-10 h-10 shrink-0 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-xl shadow-md bg-gradient-to-tr from-blue-700 to-teal-500">
               UA
             </div>
-            <div>
-              <h1 className="font-bold text-lg md:text-xl text-slate-900 leading-none">TrikeSafe QR</h1>
-              <p className="text-xs text-slate-500 mt-0.5">Safe University Area Tricycle Transportation</p>
+            <div className="min-w-0">
+              <h1 className="truncate font-bold text-base sm:text-lg md:text-xl text-slate-900 leading-none">TrikeSafe QR</h1>
+              <p className="hidden sm:block text-xs text-slate-500 mt-0.5">Safe University Area Tricycle Transportation</p>
             </div>
           </div>
 
@@ -500,24 +521,57 @@ function App() {
           </nav>
 
           {/* Quick Action Buttons Header */}
-          <div className="flex items-center space-x-2">
+          <div className="flex shrink-0 items-center space-x-1.5 sm:space-x-2">
             <button 
               onClick={() => setIsQrScannerOpen(true)}
-              className="px-3 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white text-xs md:text-sm font-bold flex items-center space-x-1.5 shadow-md shadow-teal-200 transition"
+              aria-label="Scan QR"
+              className="px-2.5 sm:px-3 py-2 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white text-xs md:text-sm font-bold flex items-center space-x-1.5 shadow-md shadow-teal-200 transition"
             >
               <Scan className="w-4 h-4 animate-pulse" />
-              <span>Scan QR</span>
+              <span className="hidden sm:inline">Scan QR</span>
             </button>
 
             <button 
               onClick={() => setActiveTab('emergency')}
-              className="px-3 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs md:text-sm font-semibold flex items-center space-x-1.5 shadow-md shadow-rose-200 transition"
+              aria-label="Emergency SOS"
+              className="px-2.5 sm:px-3 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 text-white text-xs md:text-sm font-semibold flex items-center space-x-1.5 shadow-md shadow-rose-200 transition"
             >
               <AlertTriangle className="w-4 h-4" />
               <span className="hidden sm:inline">SOS</span>
             </button>
           </div>
         </div>
+
+        <nav aria-label="Primary navigation" className="lg:hidden border-t border-slate-100 bg-white">
+          <div className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-3 py-2 sm:px-4">
+            {responsiveNavItems.map(({ label, tab }) => {
+              const isActive = activeTab === tab;
+              const activeStyle = role === 'admin'
+                ? 'bg-amber-50 text-amber-700'
+                : role === 'driver'
+                  ? 'bg-emerald-50 text-emerald-700'
+                  : tab === 'report'
+                    ? 'bg-rose-50 text-rose-700'
+                    : tab === 'rate'
+                      ? 'bg-amber-50 text-amber-700'
+                      : 'bg-blue-50 text-blue-700';
+
+              return (
+                <button
+                  key={tab}
+                  type="button"
+                  onClick={() => setActiveTab(tab)}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`shrink-0 whitespace-nowrap rounded-lg px-3 py-2 text-xs sm:text-sm font-semibold transition ${
+                    isActive ? activeStyle : 'text-slate-600 hover:bg-slate-100'
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+        </nav>
       </header>
 
       {/* MAIN CONTENT AREA */}
@@ -2093,51 +2147,6 @@ CREATE TABLE announcements (
           </div>
         </div>
       </footer>
-
-      {/* MOBILE BOTTOM NAVIGATION BAR */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 z-40 px-2 py-1 flex justify-around items-center shadow-lg">
-        <button 
-          onClick={() => setActiveTab(role === 'public' ? 'home' : role === 'driver' ? 'driverDash' : 'adminDash')}
-          className={`flex flex-col items-center py-1 px-3 ${['home', 'driverDash', 'adminDash'].includes(activeTab) ? 'text-blue-600' : 'text-slate-500'}`}
-        >
-          <Shield className="w-5 h-5" />
-          <span className="text-[10px] font-medium mt-0.5">Home</span>
-        </button>
-
-        <button 
-          onClick={() => setIsQrScannerOpen(true)}
-          className="flex flex-col items-center py-1 px-3 text-teal-600 font-bold"
-        >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-teal-500 to-emerald-500 text-white flex items-center justify-center shadow-md">
-            <Scan className="w-4 h-4" />
-          </div>
-          <span className="text-[10px] font-bold mt-0.5">Scan QR</span>
-        </button>
-
-        <button 
-          onClick={() => setActiveTab('directory')}
-          className={`flex flex-col items-center py-1 px-3 ${activeTab === 'directory' ? 'text-blue-600' : 'text-slate-500'}`}
-        >
-          <Search className="w-5 h-5" />
-          <span className="text-[10px] font-medium mt-0.5">Directory</span>
-        </button>
-
-        <button 
-          onClick={() => setActiveTab('report')}
-          className={`flex flex-col items-center py-1 px-3 ${activeTab === 'report' ? 'text-rose-600' : 'text-slate-500'}`}
-        >
-          <AlertCircle className="w-5 h-5" />
-          <span className="text-[10px] font-medium mt-0.5">Report</span>
-        </button>
-
-        <button 
-          onClick={() => setActiveTab('lostfound')}
-          className={`flex flex-col items-center py-1 px-3 ${activeTab === 'lostfound' ? 'text-blue-600' : 'text-slate-500'}`}
-        >
-          <HelpCircle className="w-5 h-5" />
-          <span className="text-[10px] font-medium mt-0.5">Lost&Found</span>
-        </button>
-      </div>
 
     </div>
   );
