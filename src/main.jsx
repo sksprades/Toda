@@ -367,7 +367,7 @@ function App() {
       id: Date.now(),
       ...announcementForm,
       date: new Date().toISOString().slice(0, 10),
-      author: "TODA Admin / Executive Board"
+      author: "Admin / Executive Board"
     };
     setAnnouncements([newAnn, ...announcements]);
     showToast("Announcement published successfully!");
@@ -419,7 +419,7 @@ function App() {
         <div className="bg-slate-900 text-slate-200 px-4 py-2 text-xs md:text-sm flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center space-x-2">
             <Shield className="w-4 h-4 text-blue-400" />
-            <span className="font-semibold tracking-wide text-blue-300">TRIKESAFE</span>
+            <span className="font-semibold tracking-wide text-blue-300">TRIKESAFE QR</span>
             <span className="hidden sm:inline text-slate-400">| Safe & Transparent Tricycle Transportation</span>
           </div>
 
@@ -442,7 +442,7 @@ function App() {
                 onClick={() => { setRole('admin'); setActiveTab('adminDash'); }}
                 className={`px-2.5 py-1 rounded-md text-xs font-medium transition ${role === 'admin' ? 'bg-amber-600 text-white shadow' : 'text-slate-300 hover:text-white'}`}
               >
-                TODA Admin
+                Admin
               </button>
             </div>
           </div>
@@ -455,7 +455,7 @@ function App() {
               UA
             </div>
             <div>
-              <h1 className="font-bold text-lg md:text-xl text-slate-900 leading-none">TrikeSafe</h1>
+              <h1 className="font-bold text-lg md:text-xl text-slate-900 leading-none">TrikeSafe QR</h1>
               <p className="text-xs text-slate-500 mt-0.5">Safe University Area Tricycle Transportation</p>
             </div>
           </div>
@@ -2022,8 +2022,8 @@ CREATE TABLE announcements (
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex items-center space-x-2">
             <div className="w-6 h-6 rounded bg-blue-600 text-white font-bold flex items-center justify-center text-xs">UA</div>
-            <span className="font-bold text-white">TrikeSafe</span>
-            <span>© 2026 TrikeSafe</span>
+            <span className="font-bold text-white">TrikeSafe QR</span>
+            <span>© 2026 TrikeSafe QR</span>
           </div>
 
           <div className="flex items-center space-x-4">
