@@ -1169,7 +1169,7 @@ function App() {
           <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold text-slate-900">TODA Advisories & Community News</h2>
+                <h2 className="text-2xl font-bold text-slate-900">Advisories & Community News</h2>
                 <p className="text-xs md:text-sm text-slate-500">Official fare schedules, route detours, weather warnings, and assembly notices.</p>
               </div>
 
