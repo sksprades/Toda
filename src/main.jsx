@@ -419,7 +419,7 @@ function App() {
         <div className="bg-slate-900 text-slate-200 px-4 py-2 text-xs md:text-sm flex flex-wrap justify-between items-center gap-2">
           <div className="flex items-center space-x-2">
             <Shield className="w-4 h-4 text-blue-400" />
-            <span className="font-semibold tracking-wide text-blue-300">UA TODA CONNECT</span>
+            <span className="font-semibold tracking-wide text-blue-300">TRIKESAFE</span>
             <span className="hidden sm:inline text-slate-400">| Safe & Transparent Tricycle Transportation</span>
           </div>
 
@@ -455,8 +455,8 @@ function App() {
               UA
             </div>
             <div>
-              <h1 className="font-bold text-lg md:text-xl text-slate-900 leading-none">UA TODA Connect</h1>
-              <p className="text-xs text-slate-500 mt-0.5">University Area Tricycle Association</p>
+              <h1 className="font-bold text-lg md:text-xl text-slate-900 leading-none">TrikeSafe</h1>
+              <p className="text-xs text-slate-500 mt-0.5">Safe University Area Tricycle Transportation</p>
             </div>
           </div>
 
@@ -2023,7 +2023,7 @@ CREATE TABLE announcements (
           <div className="flex items-center space-x-2">
             <div className="w-6 h-6 rounded bg-blue-600 text-white font-bold flex items-center justify-center text-xs">UA</div>
             <span className="font-bold text-white">TrikeSafe</span>
-            <span>© 2026 University Area Tricycle Association</span>
+            <span>© 2026 TrikeSafe</span>
           </div>
 
           <div className="flex items-center space-x-4">
