@@ -1384,7 +1384,7 @@ function App() {
           <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div>
-                <h2 className="text-2xl font-bold text-slate-900">TODA Officer Administrative Control</h2>
+                <h2 className="text-2xl font-bold text-slate-900">LGU AAdmin Control</h2>
                 <p className="text-xs md:text-sm text-slate-500">Manage driver registrations, review passenger reports, and broadcast fare matrices.</p>
               </div>
 
